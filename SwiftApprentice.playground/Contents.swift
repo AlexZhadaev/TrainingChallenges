@@ -1,35 +1,36 @@
 import UIKit
+import XCTest
 
 // MARK: Chapter #4 challenges
 
-var countdown: [Int] = []
-
-for i in 0...10 {
-    countdown.insert(i, at: 0)
-}
-print(countdown)
-
-for i in 0...10 {
-    print(10 - i)
-}
-
-var doubleCountdown: [Double] = []
-var number: Double = 0.0
-for _ in 0...10 {
-    doubleCountdown.append(number)
-    number += 0.1
-}
-print(doubleCountdown)
-
-var number2: Double = 0.0
-for _ in 0...10 {
-    print(number2)
-    number2 += 0.1
-}
-
-for i in 0...10 {
-    print(Double(i) * 0.1)
-}
+//var countdown: [Int] = []
+//
+//for i in 0...10 {
+//    countdown.insert(i, at: 0)
+//}
+//print(countdown)
+//
+//for i in 0...10 {
+//    print(10 - i)
+//}
+//
+//var doubleCountdown: [Double] = []
+//var number: Double = 0.0
+//for _ in 0...10 {
+//    doubleCountdown.append(number)
+//    number += 0.1
+//}
+//print(doubleCountdown)
+//
+//var number2: Double = 0.0
+//for _ in 0...10 {
+//    print(number2)
+//    number2 += 0.1
+//}
+//
+//for i in 0...10 {
+//    print(Double(i) * 0.1)
+//}
 
 // MARK: Chapter #9 challenges
 
@@ -39,27 +40,27 @@ for i in 0...10 {
 // bonus-bonus points, print it as a nice histogram.
 // Hint: You could use # characters to draw the bars.
 
-func stringToCharacterCount(from string: String) {
-    guard !string.isEmpty else { return }
-    var countDict: [Character: Int] = [:]
-    
-    for char in string {
-        countDict[char, default: 0] += 1
-    }
-    
-    let sortedKeys = countDict.keys.sorted { countDict[$0]! > countDict[$1]! }
-    
-    let maxCount = countDict[sortedKeys.first!]!
-    
-    for key in sortedKeys {
-    let countForCharacter = countDict[key]!
-    let heightOfBar = (countForCharacter * 20) / maxCount
-    let bar = String(repeating: "#", count: heightOfBar)
-    print("\(key) : \(bar) \(countForCharacter)")
-  }
-}
-
-stringToCharacterCount(from: "Abraham Lincoln was the best president of the USA")
+//func stringToCharacterCount(from string: String) {
+//    guard !string.isEmpty else { return }
+//    var countDict: [Character: Int] = [:]
+//
+//    for char in string {
+//        countDict[char, default: 0] += 1
+//    }
+//
+//    let sortedKeys = countDict.keys.sorted { countDict[$0]! > countDict[$1]! }
+//
+//    let maxCount = countDict[sortedKeys.first!]!
+//
+//    for key in sortedKeys {
+//    let countForCharacter = countDict[key]!
+//    let heightOfBar = (countForCharacter * 20) / maxCount
+//    let bar = String(repeating: "#", count: heightOfBar)
+//    print("\(key) : \(bar) \(countForCharacter)")
+//  }
+//}
+//
+//stringToCharacterCount(from: "Abraham Lincoln was the best president of the USA")
 
 
 //#2
@@ -67,35 +68,35 @@ stringToCharacterCount(from: "Abraham Lincoln was the best president of the USA"
 // splitting the string.
 // Hint: try iterating through the string yourself.
 
-func numberOfWords(for string: String) -> Int {
-    guard !string.isEmpty else { return 0 }
-    var wordsCount = 1
-    
-    for i in string where i.isWhitespace {
-        wordsCount += 1
-    }
-    return wordsCount
-}
-
-print(numberOfWords(for: "Abraham Lincoln was the best president of the USA"))
+//func numberOfWords(for string: String) -> Int {
+//    guard !string.isEmpty else { return 0 }
+//    var wordsCount = 1
+//
+//    for i in string where i.isWhitespace {
+//        wordsCount += 1
+//    }
+//    return wordsCount
+//}
+//
+//print(numberOfWords(for: "Abraham Lincoln was the best president of the USA"))
 
 //#3
 // Write a function that takes a string that looks like “Galloway, Matt” and returns one
 // which looks like “Matt Galloway”, i.e., the string goes from "<LAST_NAME>,
 // <FIRST_NAME>" to "<FIRST_NAME> <LAST_NAME>".
 
-func reverseFullName(for string: String) -> String {
-    guard !string.isEmpty else { return "String is empty" }
-    var firstName: String = ""
-    var secondName: String = ""
-    guard var midIndex = string.firstIndex(of:",") else { return "" }
-    firstName = String(string[string.index(after: midIndex)...])
-    secondName = String(string[..<midIndex])
-    
-    return firstName + " " + secondName
-}
-
-print(reverseFullName(for: "Galloway, Matt"))
+//func reverseFullName(for string: String) -> String {
+//    guard !string.isEmpty else { return "String is empty" }
+//    var firstName: String = ""
+//    var secondName: String = ""
+//    guard var midIndex = string.firstIndex(of:",") else { return "" }
+//    firstName = String(string[string.index(after: midIndex)...])
+//    secondName = String(string[..<midIndex])
+//
+//    return firstName + " " + secondName
+//}
+//
+//print(reverseFullName(for: "Galloway, Matt"))
 
 
 // #4
@@ -106,25 +107,25 @@ print(reverseFullName(for: "Galloway, Matt"))
 // Hint: There exists a view on String named indices that lets you iterate through all
 // the indices (of type String.Index) in the string. You will need to use this.
 
-func customComponents(of string: String, delimitedBy delimiter: Character) -> [String]? {
-    guard !string.isEmpty else { return nil }
-    var components: [String] = []
-    var currentWordStartIndex = string.startIndex
-    
-    for i in string.indices {
-        if string[i] == delimiter {
-            let word = string[currentWordStartIndex..<i]
-            components.append(String(word))
-            currentWordStartIndex = string.index(after: i)
-        }
-    }
-    let lastWord = string[currentWordStartIndex...]
-    components.append(String(lastWord))
-    
-    return components
-}
-
-print(customComponents(of: "Dog,Cat,Badger,Snake,Lion", delimitedBy: ","))
+//func customComponents(of string: String, delimitedBy delimiter: Character) -> [String]? {
+//    guard !string.isEmpty else { return nil }
+//    var components: [String] = []
+//    var currentWordStartIndex = string.startIndex
+//
+//    for i in string.indices {
+//        if string[i] == delimiter {
+//            let word = string[currentWordStartIndex..<i]
+//            components.append(String(word))
+//            currentWordStartIndex = string.index(after: i)
+//        }
+//    }
+//    let lastWord = string[currentWordStartIndex...]
+//    components.append(String(lastWord))
+//
+//    return components
+//}
+//
+//print(customComponents(of: "Dog,Cat,Badger,Snake,Lion", delimitedBy: ","))
 
 
 // #5
@@ -140,24 +141,99 @@ print(customComponents(of: "Dog,Cat,Badger,Snake,Lion", delimitedBy: ","))
 // member, why this is better in terms of memory usage than using the function you
 // created in the previous challenge.
 
-func wordReverser(for string: String) -> String {
-    guard !string.isEmpty else { return "There is an empty string" }
-    var reversed: String = ""
-    var currentWordStartIndex = string.startIndex
+//func wordReverser(for string: String) -> String {
+//    guard !string.isEmpty else { return "There is an empty string" }
+//    var reversed: String = ""
+//    var currentWordStartIndex = string.startIndex
+//
+//    for i in string.indices {
+//        if string[i].isWhitespace {
+//            let word = string[currentWordStartIndex..<i]
+//            reversed += String(word).reversed() + " "
+//            currentWordStartIndex = string.index(after: i)
+//        }
+//    }
+//    let lastWord = string[currentWordStartIndex...]
+//    reversed += String(lastWord).reversed() + " "
+//
+//    return reversed
+//}
+//
+//print(wordReverser(for: "The quick brown fox jumps over the lazy dog"))
+
+
+// MARK: Chapter #18
+/*
+// Create a checking account for John. Deposit $300.00
+let johnChecking = CheckingAccount()
+johnChecking.deposit(amount: 300.00)
+// Write a check for $200.00
+let check = johnChecking.writeCheck(amount: 200.0)!
+// Create a checking account for Jane, and deposit the check.
+let janeChecking = CheckingAccount()
+janeChecking.deposit(check)
+janeChecking.balance // 200.00
+// Try to cash the check again. Of course, it had no effect on
+// Jane’s balance this time :]
+janeChecking.deposit(check)
+janeChecking.balance // 20
+*/
+class SavingsAccount: BasicAccount {
+    var interestRate: Double
+    private let pin: Int
     
-    for i in string.indices {
-        if string[i].isWhitespace {
-            let word = string[currentWordStartIndex..<i]
-            reversed += String(word).reversed() + " "
-            currentWordStartIndex = string.index(after: i)
+    @available(*, deprecated, message: "Use init(interestRate: Double, pin: Int) instead")
+    init(interestRate: Double) {
+        self.interestRate = interestRate
+    }
+    
+    init(interestRate: Double, pin: Int) {
+        self.interestRate = interestRate
+        self.pin = pin
+    }
+    
+    @available(*, deprecated, message: "Use func processInterest(pin: Int) instead")
+    func processInterest() {
+            let interest = balance * interestRate
+            deposit(amount: interest)
+    }
+    
+    func processInterest(pin: Int) {
+        if pin == self.pin {
+            let interest = balance * interestRate
+            deposit(amount: interest)
         }
     }
-    let lastWord = string[currentWordStartIndex...]
-    reversed += String(lastWord).reversed() + " "
-    
-    return reversed
 }
 
-print(wordReverser(for: "The quick brown fox jumps over the lazy dog"))
+class Doctor: ClassyPerson {
+    override var fullName: String {
+        "Dr. \(super.fullName)"
+    }
+}
 
+//print(Doctor(firstName: "Kerby", secondName: "Strong"))
+//
+//var newAccount = SavingsAccount(interestRate: 1.2)
+//
+//newAccount.processInterest()
 
+func creatingAccount() -> some Account {
+    return CheckingAccount()
+}
+
+class BankingTests: XCTestCase {
+    
+    func testNewAccountBalanceIsZero() {
+        let checkingAccount = CheckingAccount()
+        XCTAssertEqual(checkingAccount.balance, 0)
+    }
+
+    func testWritingChecksOverBudgesFails() {
+        let checkingAccount = CheckingAccount()
+        let writingCheck = checkingAccount.writeCheck(amount: 100)
+        XCTAssertNil(writingCheck)
+    }
+}
+
+BankingTests.defaultTestSuite.run()
