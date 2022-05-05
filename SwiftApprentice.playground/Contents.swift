@@ -1,5 +1,7 @@
 import UIKit
 import XCTest
+import os
+import Foundation
 
 // MARK: Chapter #4 challenges
 
@@ -178,25 +180,27 @@ janeChecking.balance // 200.00
 janeChecking.deposit(check)
 janeChecking.balance // 20
 */
+
+/*
 class SavingsAccount: BasicAccount {
     var interestRate: Double
     private let pin: Int
     
-    @available(*, deprecated, message: "Use init(interestRate: Double, pin: Int) instead")
-    init(interestRate: Double) {
-        self.interestRate = interestRate
-    }
+//    @available(*, deprecated, message: "Use init(interestRate: Double, pin: Int) instead")
+//    init(interestRate: Double) {
+//        self.interestRate = interestRate
+//    }
     
     init(interestRate: Double, pin: Int) {
         self.interestRate = interestRate
         self.pin = pin
     }
     
-    @available(*, deprecated, message: "Use func processInterest(pin: Int) instead")
-    func processInterest() {
-            let interest = balance * interestRate
-            deposit(amount: interest)
-    }
+//    @available(*, deprecated, message: "Use func processInterest(pin: Int) instead")
+//    func processInterest() {
+//            let interest = balance * interestRate
+//            deposit(amount: interest)
+//    }
     
     func processInterest(pin: Int) {
         if pin == self.pin {
@@ -223,17 +227,84 @@ func creatingAccount() -> some Account {
 }
 
 class BankingTests: XCTestCase {
+    var checkingAccount: CheckingAccount!
+    
+    override func setUp() {
+        super.setUp()
+        checkingAccount = CheckingAccount()
+    }
+    
+    override func tearDown() {
+        checkingAccount.withdraw(amount: checkingAccount.balance)
+        super.tearDown()
+    }
     
     func testNewAccountBalanceIsZero() {
-        let checkingAccount = CheckingAccount()
         XCTAssertEqual(checkingAccount.balance, 0)
     }
 
     func testWritingChecksOverBudgesFails() {
-        let checkingAccount = CheckingAccount()
         let writingCheck = checkingAccount.writeCheck(amount: 100)
         XCTAssertNil(writingCheck)
+    }
+    
+    func testFailAPI() {
+        guard #available(iOS 14, *) else {
+            XCTFail("Only available in iOS 14 and above")
+        }
+    }
+    
+    func testSkipAPI() throws {
+        guard #available(iOS 14, *) else {
+            throw XCTSkip("Only available in iOS 14 and above")
+        }
     }
 }
 
 BankingTests.defaultTestSuite.run()
+*/
+
+// MARK: Challenges #18
+
+// #1
+class Logger {
+    private init() { }
+    
+    static let sharedLogger = Logger()
+    
+    func log(text: String) {
+        print(text)
+    }
+}
+
+//#2
+struct Stack<Element> {
+    private var elements: [Element] = []
+    
+    var count: Int {
+        return elements.count
+    }
+    
+    func peek() -> Element? {
+        guard !elements.isEmpty else { return nil }
+        return elements.last
+    }
+    
+    mutating func push(element: Element) {
+        elements.append(element)
+    }
+    
+    mutating func pop() -> Element? {
+        guard !elements.isEmpty else { return nil }
+        return elements.removeLast()
+    }
+}
+
+//#3
+let elf = GameCharacterFactory.make(ofType: .elf)
+let giant = GameCharacterFactory.make(ofType: .giant)
+let wizard = GameCharacterFactory.make(ofType: .wizard)
+
+battle(elf, vs: giant)
+battle(wizard, vs: giant)
+battle(wizard, vs: elf)
