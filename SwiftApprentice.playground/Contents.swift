@@ -267,6 +267,7 @@ BankingTests.defaultTestSuite.run()
 // MARK: Challenges #18
 
 // #1
+/*
 class Logger {
     private init() { }
     
@@ -308,3 +309,47 @@ let wizard = GameCharacterFactory.make(ofType: .wizard)
 battle(elf, vs: giant)
 battle(wizard, vs: giant)
 battle(wizard, vs: elf)
+*/
+enum FruitType {
+    case pear
+    case apple
+    case orange
+}
+
+struct FruitsBox {
+    let fruitType: FruitType
+    let weight: Int
+}
+
+var pearContainer = [FruitsBox]()
+var appleContainer = [FruitsBox]()
+var orangeContainer = [FruitsBox]()
+
+var totalWeight = 0
+
+func sortingFruits(truckOfFruits: [FruitsBox]) {
+    for fruit in truckOfFruits {
+        switch fruit.fruitType {
+        case .pear: pearContainer.append(fruit)
+        case .apple: appleContainer.append(fruit)
+        case .orange: orangeContainer.append(fruit)
+        }
+        
+        totalWeight += fruit.weight
+    }
+}
+
+let loadedTruck: [FruitsBox] = [
+    FruitsBox(fruitType: .orange, weight: 230),
+    FruitsBox(fruitType: .apple, weight: 34),
+    FruitsBox(fruitType: .pear, weight: 339),
+    FruitsBox(fruitType: .orange, weight: 230),
+    FruitsBox(fruitType: .apple, weight: 38),
+    FruitsBox(fruitType: .apple, weight: 95)
+]
+
+sortingFruits(truckOfFruits: loadedTruck)
+print(pearContainer.count)
+print(appleContainer.count)
+print(orangeContainer.count)
+print(totalWeight)
